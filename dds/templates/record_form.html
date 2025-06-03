@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block content %}
+<div class="container-fluid py-4">
+    <h1 class="h2 mb-4 text-center">
+        {% if form.instance.id %}
+            {% trans "Редактировать запись" %}
+        {% else %}
+            {% trans "Добавить новую запись" %}
+        {% endif %}
+    </h1>
+    {% if messages %}
+        <div class="alert alert-dismissible fade show mb-4">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="card p-4 mb-4 shadow-sm">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary me-2">{% trans "Сохранить" %}</button>
+                <a href="{% url 'index' %}" class="btn btn-secondary">{% trans "Отмена" %}</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function updateCategories(typeId) {
+    let categorySelect = document.getElementById('id_category');
+    if (typeId) {
+        fetch(`/get_categories/?type_id=${typeId}`)
+            .then(response => response.json())
+            .then(data => {
+                categorySelect.innerHTML = '<option value="">{% trans "Выберите категорию" %}</option>';
+                data.categories.forEach(cat => {
+                    let option = document.createElement('option');
+                    option.value = cat.id;
+                    option.text = cat.name;
+                    categorySelect.appendChild(option);
+                });
+                categorySelect.dispatchEvent(new Event('change'));
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+    } else {
+        categorySelect.innerHTML = '<option value="">{% trans "Выберите категорию" %}</option>';
+        document.getElementById('id_subcategory').innerHTML = '<option value="">{% trans "Выберите подкатегорию" %}</option>';
+    }
+}
+
+function updateSubcategories(categoryId) {
+    let subcategorySelect = document.getElementById('id_subcategory');
+    if (categoryId) {
+        fetch(`/subcategories/?category_id=${categoryId}`)
+            .then(response => response.json())
+            .then(data => {
+                subcategorySelect.innerHTML = '<option value="">{% trans "Выберите подкатегорию" %}</option>';
+                data.subcategories.forEach(sub => {
+                    let option = document.createElement('option');
+                    option.value = sub.id;
+                    option.text = sub.name;
+                    subcategorySelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching subcategories:', error));
+    } else {
+        subcategorySelect.innerHTML = '<option value="">{% trans "Выберите подкатегорию" %}</option>';
+    }
+}
+
+document.getElementById('id_type').addEventListener('change', function() {
+    updateCategories(this.value);
+});
+
+document.getElementById('id_category').addEventListener('change', function() {
+    updateSubcategories(this.value);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    let typeSelect = document.getElementById('id_type');
+    let categorySelect = document.getElementById('id_category');
+    if (typeSelect.value) {
+        updateCategories(typeSelect.value);
+    }
+    if (categorySelect.value) {
+        updateSubcategories(categorySelect.value);
+    }
+});
+</script>
+{% endblock %}

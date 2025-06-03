@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block content %}
+<div class="container-fluid main-content">
+    <h1 class="h2 mb-4 text-center">{% trans "Управление денежными потоками" %}</h1>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-gradient-primary text-white">
+            <h2 class="h4 mb-0">{% trans "Фильтры" %}</h2>
+        </div>
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label for="start_date" class="form-label">{% trans "Дата от" %}</label>
+                    <input type="date" id="start_date" name="start_date" class="form-control" value="{{ start_date }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="end_date" class="form-label">{% trans "Дата до" %}</label>
+                    <input type="date" id="end_date" name="end_date" class="form-control" value="{{ end_date }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="status" class="form-label">{% trans "Статус" %}</label>
+                    <select id="status" name="status" class="form-select">
+                        <option value="">{% trans "Все статусы" %}</option>
+                        {% for status in statuses %}
+                            <option value="{{ status.id }}" {% if selected_status == status.id %}selected{% endif %}>{{ status.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="type" class="form-label">{% trans "Тип" %}</label>
+                    <select id="type" name="type" class="form-select">
+                        <option value="">{% trans "Все типы" %}</option>
+                        {% for type in types %}
+                            <option value="{{ type.id }}" {% if selected_type == type.id %}selected{% endif %}>{{ type.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="category" class="form-label">{% trans "Категория" %}</label>
+                    <select id="category" name="category" class="form-select">
+                        <option value="">{% trans "Все категории" %}</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" {% if selected_category == category.id %}selected{% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="subcategory" class="form-label">{% trans "Подкатегория" %}</label>
+                    <select id="subcategory" name="subcategory" class="form-select">
+                        <option value="">{% trans "Все подкатегории" %}</option>
+                        {% for subcategory in subcategories %}
+                            <option value="{{ subcategory.id }}" {% if selected_subcategory == subcategory.id %}selected{% endif %}>{{ subcategory.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">{% trans "Применить" %}</button>
+                    <a href="{% url 'index' %}" class="btn btn-secondary">{% trans "Сбросить" %}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-header bg-gradient-primary text-white">
+            <h2 class="h4 mb-0">{% trans "Записи" %}</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-items-center">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Дата" %}</th>
+                            <th>{% trans "Сумма" %}</th>
+                            <th>{% trans "Тип" %}</th>
+                            <th>{% trans "Категория" %}</th>
+                            <th>{% trans "Подкатегория" %}</th>
+                            <th>{% trans "Статус" %}</th>
+                            <th>{% trans "Комментарий" %}</th>
+                            <th>{% trans "Действия" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                        <tr>
+                            <td>{{ record.date }}</td>
+                            <td>{{ record.amount }}</td>
+                            <td>{{ record.type.name }}</td>
+                            <td>{{ record.category.name }}</td>
+                            <td>{{ record.subcategory.name|default:"-" }}</td>
+                            <td>{{ record.status.name }}</td>
+                            <td>{{ record.comment|default:"-" }}</td>
+                            <td>
+                                <a href="{% url 'record_edit' record.id %}" class="btn btn-primary btn-sm me-1">{% trans "Редактировать" %}</a>
+                                <form action="{% url 'record_delete' record.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm">{% trans "Удалить" %}</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="8" class="text-center text-muted">{% trans "Записи не найдены." %}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'record_add' %}" class="btn btn-primary">{% trans "Добавить запись" %}</a>
+</div>
+
+<script>
+function updateCategories(typeId) {
+    let categorySelect = document.getElementById('category');
+    if (typeId) {
+        fetch(`/get_categories/?type_id=${typeId}`)
+            .then(response => response.json())
+            .then(data => {
+                categorySelect.innerHTML = '<option value="">{% trans "Все категории" %}</option>';
+                data.categories.forEach(cat => {
+                    let option = document.createElement('option');
+                    option.value = cat.id;
+                    option.text = cat.name;
+                    categorySelect.appendChild(option);
+                });
+                categorySelect.dispatchEvent(new Event('change'));
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+    } else {
+        categorySelect.innerHTML = '<option value="">{% trans "Все категории" %}</option>';
+        document.getElementById('subcategory').innerHTML = '<option value="">{% trans "Все подкатегории" %}</option>';
+    }
+}
+
+function updateSubcategories(categoryId) {
+    let subcategorySelect = document.getElementById('subcategory');
+    if (categoryId) {
+        fetch(`/subcategories/?category_id=${categoryId}`)
+            .then(response => response.json())
+            .then(data => {
+                subcategorySelect.innerHTML = '<option value="">{% trans "Все подкатегории" %}</option>';
+                data.subcategories.forEach(sub => {
+                    let option = document.createElement('option');
+                    option.value = sub.id;
+                    option.text = sub.name;
+                    subcategorySelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching subcategories:', error));
+    } else {
+        subcategorySelect.innerHTML = '<option value="">{% trans "Все подкатегории" %}</option>';
+    }
+}
+
+document.getElementById('type').addEventListener('change', function() {
+    updateCategories(this.value);
+});
+
+document.getElementById('category').addEventListener('change', function() {
+    updateSubcategories(this.value);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    let typeSelect = document.getElementById('type');
+    let categorySelect = document.getElementById('category');
+    if (typeSelect.value) {
+        updateCategories(typeSelect.value);
+    }
+    if (categorySelect.value) {
+        updateSubcategories(categorySelect.value);
+    }
+});
+</script>
+{% endblock %}

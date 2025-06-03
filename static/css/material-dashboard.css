@@ -1,0 +1,11 @@
+
+.navbar {
+    box-shadow: 0 4px 6px rgba(231, 229, 229, 0.1);
+}
+.btn-primary {
+    background-color: #3f51b5;
+    border-color: #3f51b5;
+}
+.navbar-nav {
+    flex-direction: row !important;
+}

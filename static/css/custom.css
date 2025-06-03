@@ -1,0 +1,165 @@
+body {
+    font-family: 'Nunito', 'Segoe UI', sans-serif;
+    background-color: #f8f9fb;
+    color: #333;
+    line-height: 1.6;
+}
+
+.sidenav.navbar-vertical {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    width: 240px;
+    padding-top: 1rem;
+}
+
+.sidenav-header .navbar-brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50 !important;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.nav-link {
+    color: #2c3e50 !important;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #f0f4f8;
+}
+
+.nav-link.active {
+    background-color: #dbeafe !important;
+    font-weight: 600;
+}
+
+.main-content {
+    padding: 2rem;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    background: linear-gradient(45deg, #2563eb, #3b82f6);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+}
+
+.table th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.table td {
+    padding: 0.9rem;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.table-responsive {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+    border-color: #dc2626;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    border-color: #6b7280;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+.form-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.alert {
+    border-radius: 6px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+}
+
+/* headings*/
+h1, h2, h4 {
+    color: #1e293b;
+}
+
+.text-muted {
+    color: #6b7280 !important;
+}
+
+/* Responsives */
+@media (max-width: 767.98px) {
+    .sidenav.navbar-vertical {
+        width: 200px;
+    }
+    .main-content {
+        padding: 1rem;
+    }
+}

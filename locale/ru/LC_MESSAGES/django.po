@@ -1,0 +1,199 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-03 14:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: dds/forms.py:10
+msgid "Название статуса"
+msgstr "Название статуса"
+
+#: dds/forms.py:18
+msgid "Название типа"
+msgstr "Название типа"
+
+#: dds/forms.py:26
+msgid "Название категории"
+msgstr "Название категории"
+
+#: dds/forms.py:27 dds/forms.py:50 dds/models.py:17 dds/models.py:23
+#: dds/models.py:28 dds/models.py:51 dds/templates/index.html:56
+msgid "Тип"
+msgstr "Тип"
+
+#: dds/forms.py:35
+msgid "Название подкатегории"
+msgstr "Название подкатегории"
+
+#: dds/forms.py:36 dds/forms.py:51 dds/models.py:27 dds/models.py:34
+#: dds/models.py:39 dds/models.py:52 dds/templates/index.html:57
+msgid "Категория"
+msgstr "Категория"
+
+#: dds/forms.py:48 dds/models.py:49 dds/templates/index.html:54
+msgid "Дата"
+msgstr "Дата"
+
+#: dds/forms.py:49 dds/models.py:7 dds/models.py:13 dds/models.py:50
+#: dds/templates/index.html:55
+msgid "Статус"
+msgstr "Статус"
+
+#: dds/forms.py:52 dds/models.py:38 dds/models.py:45 dds/models.py:53
+#: dds/templates/index.html:58
+msgid "Подкатегория"
+msgstr "Подкатегория"
+
+#: dds/forms.py:53 dds/models.py:54 dds/templates/index.html:59
+msgid "Сумма"
+msgstr "Сумма"
+
+#: dds/forms.py:54 dds/models.py:55 dds/templates/index.html:60
+msgid "Комментарий"
+msgstr "Комментарий"
+
+#: dds/models.py:14
+msgid "Статусы"
+msgstr "Статусы"
+
+#: dds/models.py:24
+msgid "Типы"
+msgstr "Типы"
+
+#: dds/models.py:35
+msgid "Категории"
+msgstr "Категории"
+
+#: dds/models.py:46
+msgid "Подкатегории"
+msgstr "Подкатегории"
+
+#: dds/models.py:61
+msgid "Запись ДДС"
+msgstr "Запись ДДС"
+
+#: dds/models.py:62 dds/templates/index.html:4
+msgid "Записи ДДС"
+msgstr "Записи ДДС"
+
+#: dds/templates/base.html:6
+msgid "Управление движением денежных средств"
+msgstr "Управление движением денежных средств"
+
+#: dds/templates/base.html:12
+msgid "ДДС"
+msgstr "ДДС"
+
+#: dds/templates/base.html:15
+msgid "Записи"
+msgstr "Записи"
+
+#: dds/templates/base.html:16
+msgid "Справочники"
+msgstr "Справочники"
+
+#: dds/templates/dictionary_management.html:4
+msgid "Управление справочниками"
+msgstr "Управление справочниками"
+
+#: dds/templates/dictionary_management.html:7
+msgid "Добавить статус"
+msgstr "Добавить статус"
+
+#: dds/templates/dictionary_management.html:11
+#: dds/templates/dictionary_management.html:19
+#: dds/templates/dictionary_management.html:27
+#: dds/templates/dictionary_management.html:35
+msgid "Добавить"
+msgstr "Добавить"
+
+#: dds/templates/dictionary_management.html:15
+msgid "Добавить тип"
+msgstr "Добавить тип"
+
+#: dds/templates/dictionary_management.html:23
+msgid "Добавить категорию"
+msgstr "Добавить категорию"
+
+#: dds/templates/dictionary_management.html:31
+msgid "Добавить подкатегорию"
+msgstr "Добавить подкатегорию"
+
+#: dds/templates/index.html:5 dds/templates/record_form.html:4
+msgid "Добавить запись"
+msgstr "Добавить запись"
+
+#: dds/templates/index.html:9
+msgid "Дата с"
+msgstr "Дата с"
+
+#: dds/templates/index.html:12
+msgid "Дата по"
+msgstr "Дата по"
+
+#: dds/templates/index.html:16
+msgid "Все статусы"
+msgstr "Все статусы"
+
+#: dds/templates/index.html:24
+msgid "Все типы"
+msgstr "Все типы"
+
+#: dds/templates/index.html:32
+msgid "Все категории"
+msgstr "Все категории"
+
+#: dds/templates/index.html:40
+msgid "Все подкатегории"
+msgstr "Все подкатегории"
+
+#: dds/templates/index.html:47
+msgid "Фильтровать"
+msgstr "Фильтровать"
+
+#: dds/templates/index.html:61
+msgid "Действия"
+msgstr "Действия"
+
+#: dds/templates/index.html:75
+msgid "Редактировать"
+msgstr "Редактировать"
+
+#: dds/templates/index.html:78
+msgid "Удалить"
+msgstr "Удалить"
+
+#: dds/templates/index.html:83
+msgid "Записи не найдены."
+msgstr "Записи не найдены."
+
+#: dds/templates/record_form.html:4
+msgid "Редактировать запись"
+msgstr "Редактировать запись"
+
+#: dds/templates/record_form.html:8
+msgid "Сохранить"
+msgstr "Сохранить"
+
+#: dds/templates/record_form.html:9
+msgid "Отмена"
+msgstr "Отмена"
+
+#: dds/templates/record_form.html:18
+msgid "Выберите подкатегорию"
+msgstr "Выберите подкатегорию"
