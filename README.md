@@ -22,7 +22,7 @@
 git clone git@github.com:kareenean/dds_project.git
 cd cashflow_project
 ```
-### 2. Создание виртуального окружения
+### 2. Создание виртуального окружения (опционально)
 Для MacOS/Linux:
 ```bash
 python -m venv venv
@@ -40,7 +40,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 4. Примените миграции:
+### 4. Примените миграции
 
 ```bash
 python manage.py makemigrations
